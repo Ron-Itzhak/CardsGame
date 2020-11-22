@@ -145,6 +145,5 @@ public class MainActivity extends AppCompatActivity {
         main_BTN_start.setVisibility(View.INVISIBLE);
         main_BTN_drawCard.setVisibility(View.VISIBLE);
         main_counter.setVisibility(View.VISIBLE); ///cancel that
-
     }
 }
