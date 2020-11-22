@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".WinnerActivity"
+    android:orientation="horizontal"
+    android:background="@color/green_ron"
+    >
+
+
+
+    <TextView
+        android:id="@+id/winner_LBL_top"
+        android:textSize="35dp"
+        android:textColor="@color/black"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+
+        android:text="The Winner Is: " />
+    <TextView
+        android:id="@+id/winner_LBL_1"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:layout_below="@id/winner_LBL_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+        android:text="Winner 1" />
+
+
+    <ImageView
+        android:id="@+id/winner_IMG_woman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/winner_LBL_1"
+        android:src="@drawable/woman" />
+
+</RelativeLayout>

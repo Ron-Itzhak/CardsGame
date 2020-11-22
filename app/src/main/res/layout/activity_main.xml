@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="horizontal"
+    android:background="#00695C"
+
+    tools:ignore="ExtraText">
+
+    <Button
+        android:id="@+id/main_BTN_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Game"
+        android:textColor="@color/black"
+        android:visibility="visible"
+
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:visibility="invisible"
+        android:id="@+id/main_BTN_drawCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:textColor="@color/black"
+
+        android:text="Draw A Card"
+        android:layout_centerInParent="true" />
+
+
+    <ImageView
+        android:id="@+id/main_IMG_unfolded1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="100dp"
+        android:src="@drawable/img_unfolded" />
+
+    <ImageView
+        android:id="@+id/main_IMG_woman"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/main_IMG_unfolded1"
+        android:layout_marginLeft="150dp"
+        android:src="@drawable/woman" />
+
+
+    <TextView
+        android:id="@+id/player1_counter"
+        android:textSize="40dp"
+        android:layout_marginLeft="190dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_IMG_woman"
+        android:text="0" />
+
+    <ImageView
+
+        android:id="@+id/main_IMG_unfolded2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="450dp"
+
+        android:src="@drawable/img_unfolded" />
+
+
+    <ImageView
+        android:id="@+id/main_IMG_man"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/main_IMG_unfolded2"
+        android:layout_centerInParent="true"
+        android:src="@drawable/man" />
+
+    <TextView
+        android:id="@+id/player2_counter"
+        android:layout_below="@+id/main_IMG_man"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="180dp"
+
+        android:textSize="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0" />
+
+
+    <TextView
+        android:id="@+id/main_counter"
+        android:textSize="35dp"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Counter = 0" />
+
+
+
+</RelativeLayout>
