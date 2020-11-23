@@ -25,19 +25,11 @@ public class WinnerActivity extends AppCompatActivity {
 
         winner_LBL_1=findViewById(R.id.winner_LBL_1);
         winner_IMG_winner=findViewById(R.id.winner_IMG_woman);
-        text= getIntent().getStringExtra(WINNER_TEXT);
+        text = getIntent().getStringExtra(WINNER_TEXT);
         winner_LBL_1.setText(text);
 
-        Log.d("test",text);
-        if(text=="winner 2"){
-       // if (text=="winner 2"){
-            Log.d("test2","working fine");
-
+        if(text.equals("winner 2")){
             winner_IMG_winner.setImageResource(R.drawable.man);}
-
-       // }
-
-
     }
 
 }

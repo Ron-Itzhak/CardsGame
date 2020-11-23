@@ -8,19 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView player1_counter,player2_counter,main_counter;
+    private TextView player1_counter,player2_counter;
     private Button main_BTN_start,main_BTN_drawCard;
     private ImageView main_IMG_unfolded1,main_IMG_unfolded2,player1,player2;
     private int[][] images;
-    private int player1_count=0,player2_count=0,i,j,x,y;
-    private EditText winner_editText;
+    private int player1_count,player2_count, p1_card_type, p2_card_type, p1_card_value, p2_card_value;
     public String winner;
     public static final String WINNER_TEXT= "winnertxt";
 
@@ -28,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        player1_count=0;
+        player2_count=0;
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         main_IMG_unfolded2=findViewById(R.id.main_IMG_unfolded2);
         player1_counter=findViewById(R.id.player1_counter);
         player2_counter=findViewById(R.id.player2_counter);
-        main_counter=findViewById(R.id.main_counter);
 
         main_BTN_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +71,11 @@ public class MainActivity extends AppCompatActivity {
              drawCard();
              Log.d("myTag", "count"+count );
 
-                if (x>y){
+                if (p1_card_value > p2_card_value){
                     player1_count++;}
-                if (y>x) {
+                if (p2_card_value > p1_card_value) {
                     player2_count++;
                 }
-                main_counter.setText("counter"+count[0]);
-
-
                 main_IMG_unfolded1.postDelayed(new Runnable() {
                     public void run() {
                         main_IMG_unfolded1.setImageResource(R.drawable.img_unfolded);
@@ -99,12 +95,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (count[0]>=26){
-                    if (x>y){
-                        winner= "winner 1";}
+                    if (player1_count>player2_count){
+                        winner= "winner 1";
                         winner(winner);
-                    finish();
-                    if (y>x) {
-                        winner= "winner2";
+                        finish();
+                    }
+                    if (player2_count>player1_count) {
+                        winner= "winner 2";
                         winner(winner);
                         finish();
 
@@ -112,29 +109,20 @@ public class MainActivity extends AppCompatActivity {
                     else
                     drawCard();
                 }
-
-
             }
         });
-
-
-
-
-                //main_BTN_increaseCounter = findViewById(R.id.main_BTN_increaseCounter);
-
-
     }
 
     private void drawCard() {
         Random rand = new Random();
-        x=rand.nextInt(13);
-        y=rand.nextInt(13);
-        Log.d("test",String.valueOf(x));
-        Log.d("test",String.valueOf(y));
-        i=rand.nextInt(4);
-        j=rand.nextInt(4);
-        main_IMG_unfolded1.setImageResource(images[x][i]);
-        main_IMG_unfolded2.setImageResource(images[y][j]);
+        p1_card_value =rand.nextInt(13);
+        p2_card_value =rand.nextInt(13);
+        Log.d("test",String.valueOf(p1_card_value));
+        Log.d("test",String.valueOf(p2_card_value));
+        p1_card_type =rand.nextInt(4);
+        p2_card_type =rand.nextInt(4);
+        main_IMG_unfolded1.setImageResource(images[p1_card_value][p1_card_type]);
+        main_IMG_unfolded2.setImageResource(images[p2_card_value][p2_card_type]);
 
     }
 
@@ -147,6 +135,5 @@ public class MainActivity extends AppCompatActivity {
     private void startgame() {
         main_BTN_start.setVisibility(View.INVISIBLE);
         main_BTN_drawCard.setVisibility(View.VISIBLE);
-        main_counter.setVisibility(View.VISIBLE); ///cancel that
     }
 }
