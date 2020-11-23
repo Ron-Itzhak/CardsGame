@@ -61,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
         main_BTN_drawCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
