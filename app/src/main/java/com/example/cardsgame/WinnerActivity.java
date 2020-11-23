@@ -1,11 +1,14 @@
 package com.example.cardsgame;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import static com.example.cardsgame.MainActivity.WINNER_TEXT;
 
 
 public class WinnerActivity extends AppCompatActivity {
@@ -22,13 +25,17 @@ public class WinnerActivity extends AppCompatActivity {
 
         winner_LBL_1=findViewById(R.id.winner_LBL_1);
         winner_IMG_winner=findViewById(R.id.winner_IMG_woman);
-        text= getIntent().getStringExtra(MainActivity.WINNER_TEXT);
+        text= getIntent().getStringExtra(WINNER_TEXT);
         winner_LBL_1.setText(text);
 
-        if (text=="winner 2"){
-            winner_IMG_winner.setImageResource(R.drawable.man);
+        Log.d("test",text);
+        if(text=="winner 2"){
+       // if (text=="winner 2"){
+            Log.d("test2","working fine");
 
-        }
+            winner_IMG_winner.setImageResource(R.drawable.man);}
+
+       // }
 
 
     }

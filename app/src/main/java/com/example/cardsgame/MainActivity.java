@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private int[][] images;
     private int player1_count=0,player2_count=0,i,j,x,y;
     private EditText winner_editText;
-    private String winner;
+    public String winner;
     public static final String WINNER_TEXT= "winnertxt";
 
     @Override
@@ -102,10 +102,13 @@ public class MainActivity extends AppCompatActivity {
                     if (x>y){
                         winner= "winner 1";}
                         winner(winner);
+                    finish();
                     if (y>x) {
                         winner= "winner2";
                         winner(winner);
-                }
+                        finish();
+
+                    }
                     else
                     drawCard();
                 }
