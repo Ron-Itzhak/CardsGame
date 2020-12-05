@@ -1,14 +1,13 @@
 package com.example.cardsgame;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.cardsgame.MainActivity.WINNER_TEXT;
+import static com.example.cardsgame.GameActivity.WINNER_TEXT;
 
 
 public class WinnerActivity extends AppCompatActivity {
