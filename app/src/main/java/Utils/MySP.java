@@ -5,12 +5,12 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 public class MySP {
-    public static String MY_PREFS_NAME = "High Score Table";
+    public static String MY_PREFS_NAME2 = "High Score Table";
     private SharedPreferences prefs;
 
 
     public MySP(Context context){
-        prefs = context.getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
+        prefs = context.getSharedPreferences(MY_PREFS_NAME2, Context.MODE_PRIVATE);
 
     }
 

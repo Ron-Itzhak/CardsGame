@@ -30,6 +30,8 @@ public class GameActivity extends AppCompatActivity {
     private int count,player1_count,player2_count, p1_card_type, p2_card_type, p1_card_value, p2_card_value,time_counter;
     public String winner;
     public static final String WINNER_TEXT= "winnertxt";
+    public static final String WINNER_SCORE= "winnerscore";
+
     public  static final int PROGMULT = 4;
     public MediaPlayer player;
 
@@ -113,12 +115,12 @@ public class GameActivity extends AppCompatActivity {
                 if (count>=26){
                     if (player1_count>player2_count){
                         winner= "winner 1";
-                        winner(winner);
+                        winner(winner,player1_count);
                         finish();
                     }
                     if (player2_count>player1_count) {
                         winner= "winner 2";
-                        winner(winner);
+                        winner(winner,player2_count);
                         finish();
 
                     }
@@ -142,9 +144,10 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    private void winner(String winner) {
+    private void winner(String winner,int count) {
         Intent intent = new Intent(this, WinnerActivity.class);
         intent.putExtra(WINNER_TEXT,winner);
+        intent.putExtra(WINNER_SCORE,count);
         startActivity(intent);
     }
 

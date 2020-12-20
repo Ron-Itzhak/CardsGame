@@ -25,8 +25,9 @@ public class Sound {
 
     public static void stop_sound(MediaPlayer mp) {
         if(mp!=null)
+            //mp.stop();
             mp.release();
-        mp=null;
+        //mp=null;
     }
 
 
