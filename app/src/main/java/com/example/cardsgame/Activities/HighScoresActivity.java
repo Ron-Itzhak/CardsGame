@@ -1,13 +1,8 @@
 package com.example.cardsgame.Activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +11,7 @@ import com.example.cardsgame.R;
 import Callbacks.Callback_List;
 import Fragments.Fragment_List;
 import Fragments.Fragment_Map;
-import Utils.MySP;
-import Utils.MySPV3;
+import Utils.MySPV;
 
 public class HighScoresActivity extends AppCompatActivity {
     private FrameLayout HighScores_list_view;
@@ -64,7 +58,7 @@ public class HighScoresActivity extends AppCompatActivity {
        // MySPV3.getInstance().getString("KEY_USER"+num,jsonInString);
         int x = Integer.parseInt(num);
             x+=1;
-            MySPV3.getInstance().getString("KEY_NUM",x+"");
+            MySPV.getInstance().getString("KEY_NUM",x+"");
 
            // fragment_list.addToList
         }
@@ -73,9 +67,8 @@ public class HighScoresActivity extends AppCompatActivity {
 
     private Callback_List callBack_list = new Callback_List() {
         @Override
-        public void addWinnerToList(String record) {
-
-            fragment_list.addToList(record);
+        public void finishActivity() {
+        finish();
         }
 
         @Override

@@ -6,15 +6,29 @@ import android.media.MediaPlayer;
 
 import com.example.cardsgame.R;
 
+import Objects.Location;
+
 public class Sound {
 
 
 
     public static void play_sound(Context context,MediaPlayer mp,int sound) {
-        if(mp==null)
+        if (mp!=null  &&  mp.isPlaying()) {
+            mp.reset();
+            mp.release();
+            mp = null;
+        }
             mp = MediaPlayer.create(context,sound);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                mp.reset();
+                mp.release();
+                mp=null;
+            }
+        });
         mp.start();
-        Sound.maxVolume(context);
     }
 
     public static void pause_sound(MediaPlayer mp) {
@@ -24,10 +38,11 @@ public class Sound {
 
 
     public static void stop_sound(MediaPlayer mp) {
-        if(mp!=null)
-            //mp.stop();
+        if(mp!=null){
+            mp.reset();
             mp.release();
-        //mp=null;
+            mp = null;}
+
     }
 
 

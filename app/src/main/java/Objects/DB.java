@@ -5,10 +5,6 @@ import java.util.ArrayList;
 public class DB {
     ArrayList<Record> records;
     private final int MAX_SIZE=10;
-
-
-    // Record[] records;
-    int actual_size;
     public DB(){
         //records= new Record[10] ;
         records = new ArrayList<>();

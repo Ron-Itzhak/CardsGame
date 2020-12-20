@@ -2,22 +2,22 @@ package Objects;
 
 public class Location {
     private double lat;
-    private double lon;
+    private double lng;
 
     public Location() { }
 
-    public Location(double lat, double lon) {
+    public Location(double lat, double lng) {
         this.lat=lat;
-        this.lon=lon;
+        this.lng=lng;
 
     }
 
     public double getLon() {
-        return lon;
+        return lng;
     }
 
-    public void setLon(double lon) {
-        this.lon = lon;
+    public void setLon(double lng) {
+        this.lng = lng;
     }
 
     public double getLat() {
@@ -32,6 +32,6 @@ public class Location {
     public String toString() {
         return "Location:" +
                 "lat-" + lat +
-                ", lon-" + lon ;
+                ", lon-" + lng ;
     }
 }

@@ -3,7 +3,6 @@ package com.example.cardsgame.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,9 +19,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import Utils.Sound;
-
 public class GameActivity extends AppCompatActivity {
+    private static final long DELAY = 3000;
     private TextView player1_counter,player2_counter;
     private Button main_BTN_start,main_BTN_drawCard;
     private ImageView main_IMG_unfolded1,main_IMG_unfolded2,player1,player2;
@@ -31,9 +29,10 @@ public class GameActivity extends AppCompatActivity {
     public String winner;
     public static final String WINNER_TEXT= "winnertxt";
     public static final String WINNER_SCORE= "winnerscore";
-
     public  static final int PROGMULT = 4;
     public MediaPlayer player;
+    private Timer carousalTimer;
+
 
     ///
     public ProgressBar main_progressBar;
@@ -71,13 +70,15 @@ public class GameActivity extends AppCompatActivity {
         player2_counter=findViewById(R.id.player2_counter);
         ///
 
-        prog();
+        progressBarAction();
 
         main_BTN_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGame();
+                //startGame();
                 play_shuffle();
+                startCounting();
+
 
             }
         });
@@ -152,10 +153,56 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void startGame() {
-        main_BTN_start.setVisibility(View.INVISIBLE);
-        main_BTN_drawCard.setVisibility(View.VISIBLE);
+     main_BTN_start.setVisibility(View.INVISIBLE);
+       /// main_BTN_drawCard.setVisibility(View.VISIBLE);
+
+        {
+            count++;
+            drawCard();
+            Log.d("myTag", "count"+count );
+
+            if (p1_card_value > p2_card_value){
+                player1_count++;}
+            if (p2_card_value > p1_card_value) {
+                player2_count++;
+            }
+            main_IMG_unfolded1.postDelayed(new Runnable() {
+                public void run() {
+                    main_IMG_unfolded1.setImageResource(R.drawable.img_unfolded);
+                }
+            }, 1500);
+
+            main_IMG_unfolded2.postDelayed(new Runnable() {
+                public void run() {
+                    main_IMG_unfolded2.setImageResource(R.drawable.img_unfolded);
+                }
+            }, 1500);
+
+            player1_counter.setText(""+player1_count);
+            player2_counter.setText(""+player2_count);
+
+
+
+
+            if (count>=26){
+                if (player1_count>player2_count){
+                    winner= "winner 1";
+                    winner(winner,player1_count);
+                    finish();
+                }
+                if (player2_count>player1_count) {
+                    winner= "winner 2";
+                    winner(winner,player2_count);
+                    finish();
+
+                }
+                else
+                    drawCard();
+            }
+        }
     }
-    private void prog(){
+
+    private void progressBarAction(){
         main_progressBar=findViewById(R.id.Game_progressBar);
         final Timer t = new Timer();
         TimerTask tt = new TimerTask()
@@ -175,10 +222,37 @@ public class GameActivity extends AppCompatActivity {
         if(player==null)
             player = MediaPlayer.create(this,R.raw.shuffling_cards);
         player.start();
-        Sound.maxVolume(this);
+//        Sound.maxVolume(this);
+    }
+    private void startCounting() {
+        carousalTimer = new Timer();
+        carousalTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        startGame()  ;                  }
+                });
+            }
+        }, 0, DELAY);
+    }
+
+    private void stopCounting() {
+        carousalTimer.cancel();
+    }
 
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopCounting();
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        main_BTN_start.setVisibility(View.INVISIBLE);
+    }
 }

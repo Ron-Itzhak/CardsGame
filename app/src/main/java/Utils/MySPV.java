@@ -3,7 +3,7 @@ package Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-    public class MySPV3 {
+    public class MySPV {
 
     public interface KEYS {
         public static String MY_PREFS_NAME = "High Scores";
@@ -11,20 +11,20 @@ import android.content.SharedPreferences;
         //public static final String KEY_USER_THEME = "KEY_USER_THEME";
     }
 
-    private static MySPV3 instance;
+    private static MySPV instance;
     private SharedPreferences prefs;
 
-    public static MySPV3 getInstance() {
+    public static MySPV getInstance() {
         return instance;
     }
 
-    private MySPV3(Context context) {
+    private MySPV(Context context) {
         prefs = context.getApplicationContext().getSharedPreferences(KEYS.MY_PREFS_NAME, Context.MODE_PRIVATE);
     }
 
     public static void init(Context context) {
         if (instance == null) {
-            instance = new MySPV3(context);
+            instance = new MySPV(context);
         }
     }
 

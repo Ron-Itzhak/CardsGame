@@ -2,7 +2,7 @@ package com.example.cardsgame.Activities;
 
 import android.app.Application;
 
-import Utils.MySPV3;
+import Utils.MySPV;
 
 public class App extends Application {
 
@@ -10,7 +10,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        MySPV3.init(this);
+        MySPV.init(this);
 
     }
 
