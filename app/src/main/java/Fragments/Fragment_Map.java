@@ -63,10 +63,7 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback {
         LatLng sydney = new LatLng(-33.852, 151.211);
         map = googleMap;
         map.clear();
-
-        map.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Marker in Sydney"));
+        //map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         //map.setMyLocationEnabled(true);

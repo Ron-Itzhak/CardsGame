@@ -9,34 +9,26 @@
     android:orientation="horizontal"
     android:background="#00695C"
     tools:ignore="ExtraText">
+    <Button
+        android:id="@+id/game_BTN_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Game"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"/>
     <ProgressBar
         android:id="@+id/Game_progressBar"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/main_BTN_start"
+        android:layout_below="@id/game_BTN_start"
         android:layout_centerHorizontal="true"
         />
 
 
-    <Button
-        android:id="@+id/main_BTN_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Game"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        android:layout_centerInParent="true"/>
 
-    <Button
-        android:visibility="invisible"
-        android:id="@+id/main_BTN_drawCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:textColor="@color/black"
-        android:text="Draw A Card"
-        android:layout_centerInParent="true" />
+
+
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -46,7 +38,7 @@
         android:paddingRight="16dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_toLeftOf="@id/main_BTN_start"
+        android:layout_toLeftOf="@id/game_BTN_start"
         android:layout_marginRight="20dp">
         <ImageView
             android:id="@+id/main_IMG_woman"
@@ -80,7 +72,7 @@
         android:paddingRight="16dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_toRightOf="@id/main_BTN_start"
+        android:layout_toRightOf="@id/game_BTN_start"
         android:layout_marginLeft="20dp">
         <ImageView
             android:id="@+id/main_IMG_man"
@@ -108,14 +100,6 @@
 
 
     </LinearLayout>
-
-
-
-
-
-
-
-
 
 
 </RelativeLayout>

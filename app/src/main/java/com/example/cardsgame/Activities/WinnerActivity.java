@@ -53,14 +53,10 @@ public class WinnerActivity extends AppCompatActivity {
     private Gson gson;
     private String jsonInString;
     private DB dataBase;
-    public String bestProvider;
+    //public String bestProvider;
+    //private FusedLocationProviderClient fusedLocationClient;
+    //private LocationCallback locationCallback;
 
-
-    private FusedLocationProviderClient fusedLocationClient;
-    private LocationCallback locationCallback;
-    //@SuppressLint("RestrictedApi")
-    //LocationRequest locationRequest = new LocationRequest();
-    //public Criteria criteria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,12 +84,14 @@ public class WinnerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 HighScores();
+                finish();
             }
         });
         winner_BTN_playAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 playAgain();
+                finish();
             }
         });
         getLocation();
@@ -131,40 +129,6 @@ public class WinnerActivity extends AppCompatActivity {
     }
 
 
-    /////delete unused
-    @SuppressLint("MissingPermission")
-    private void getLocationDelte() {
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        longitude = location.getLongitude();
-        latitude = location.getLatitude();
-    }
-
-    private void getLocation2Delete() {
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        String provider = lm.getBestProvider(criteria, true);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-
-        if (location != null) {
-            Log.e("TAG", "GPS is on");
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-            Toast.makeText(this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
-        } else {
-            //This is what you need:
-            lm.requestLocationUpdates(bestProvider, 1000, 0, locationListener);
-            //latitude = location.getLatitude();
-            //longitude = location.getLongitude();
-
-        }
-
-
-    }
-    ////-----------///
-
 
     ////Getlocation 3 working + Locatrion Listener
     private final android.location.LocationListener locationListener = new android.location.LocationListener() {
@@ -198,37 +162,75 @@ public class WinnerActivity extends AppCompatActivity {
         winner_IMG_winner = findViewById(R.id.winner_IMG_woman);
     }
 
-    private void testLocation() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(new OnSuccessListener<android.location.Location>() {
-                    @Override
-                    public void onSuccess(android.location.Location location) {
-                        if (location != null) {
-                            setRecord(location);
-                        }
-                    }
-                });
+//    private void testLocation() {
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        fusedLocationClient.getLastLocation()
+//                .addOnSuccessListener(new OnSuccessListener<android.location.Location>() {
+//                    @Override
+//                    public void onSuccess(android.location.Location location) {
+//                        if (location != null) {
+//                            setRecord(location);
+//                        }
+//                    }
+//                });
+//
+//
+//        /// add location changed fusedLocationClient.lo
+//
+//        locationCallback = new LocationCallback() {
+//            @Override
+//            public void onLocationResult(LocationResult locationResult) {
+//                if (locationResult == null) {
+//                    return;
+//                }
+//                for (android.location.Location location : locationResult.getLocations()) {
+//                    //setRecord(location);
+//                }
+//            }
+//        };
+//
+//
+//    }
 
 
-        /// add location changed fusedLocationClient.lo
 
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                if (locationResult == null) {
-                    return;
-                }
-                for (android.location.Location location : locationResult.getLocations()) {
-                    //setRecord(location);
-                }
-            }
-        };
+    //    /////delete unused
+//    @SuppressLint("MissingPermission")
+//    private void getLocationDelte() {
+//        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//        longitude = location.getLongitude();
+//        latitude = location.getLatitude();
+//    }
+
+//    private void getLocation2Delete() {
+//        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        Criteria criteria = new Criteria();
+//        String provider = lm.getBestProvider(criteria, true);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//
+//        if (location != null) {
+//            Log.e("TAG", "GPS is on");
+//            latitude = location.getLatitude();
+//            longitude = location.getLongitude();
+//            Toast.makeText(this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
+//        } else {
+//            //This is what you need:
+//            lm.requestLocationUpdates(bestProvider, 1000, 0, locationListener);
+//            //latitude = location.getLatitude();
+//            //longitude = location.getLongitude();
+//
+//        }
+//
+//
+//    }
+    ////-----------///
 
 
-    }
 
-    }
+}

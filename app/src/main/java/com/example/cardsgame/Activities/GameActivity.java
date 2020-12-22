@@ -20,32 +20,46 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
-    private static final long DELAY = 3000;
+    public static final long DELAY = 2000;
+    public static final long UNFOLDELAY = DELAY/2;
+
     private TextView player1_counter,player2_counter;
-    private Button main_BTN_start,main_BTN_drawCard;
-    private ImageView main_IMG_unfolded1,main_IMG_unfolded2,player1,player2;
+    private Button game_BTN_start;
+    private ImageView main_IMG_unfolded1,main_IMG_unfolded2;
     private int[][] images;
-    private int count,player1_count,player2_count, p1_card_type, p2_card_type, p1_card_value, p2_card_value,time_counter;
+    private int count,player1_count,player2_count, p1_card_type, p2_card_type, p1_card_value, p2_card_value;
     public String winner;
     public static final String WINNER_TEXT= "winnertxt";
     public static final String WINNER_SCORE= "winnerscore";
-    public  static final int PROGMULT = 4;
+    public  static final int MULTIPLIER = 4;
     public MediaPlayer player;
     private Timer carousalTimer;
-
-
-    ///
-    public ProgressBar main_progressBar;
+    private ProgressBar main_progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        findViewById();
+        initVariables();
+        progressBarAction();
+        game_BTN_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startGame();
+                play_shuffle();
+                startCounting();
+                game_BTN_start.setEnabled(false);
+            }
+        });
+
+    }
+
+    private void initVariables() {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         player1_count=0;
         player2_count=0;
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
+        count = 0;
         images = new int[][]{{R.drawable.poker_1, R.drawable.poker_2, R.drawable.poker_3, R.drawable.poker_4},
                 {R.drawable.poker_5, R.drawable.poker_6, R.drawable.poker_7, R.drawable.poker_8},
                 {R.drawable.poker_9, R.drawable.poker_10, R.drawable.poker_11, R.drawable.poker_12},
@@ -59,77 +73,14 @@ public class GameActivity extends AppCompatActivity {
                 {R.drawable.poker_41, R.drawable.poker_42, R.drawable.poker_43, R.drawable.poker_44},
                 {R.drawable.poker_45, R.drawable.poker_46, R.drawable.poker_47, R.drawable.poker_48},
                 {R.drawable.poker_49, R.drawable.poker_50, R.drawable.poker_51, R.drawable.poker_52}};
+    }
 
-        count = 0;
-
-        main_BTN_start=findViewById(R.id.main_BTN_start);
-        main_BTN_drawCard=findViewById(R.id.main_BTN_drawCard);
+    private void findViewById(){
+        game_BTN_start = findViewById(R.id.game_BTN_start);
         main_IMG_unfolded1=findViewById(R.id.main_IMG_unfolded1);
         main_IMG_unfolded2=findViewById(R.id.main_IMG_unfolded2);
         player1_counter=findViewById(R.id.player1_counter);
         player2_counter=findViewById(R.id.player2_counter);
-        ///
-
-        progressBarAction();
-
-        main_BTN_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startGame();
-                play_shuffle();
-                startCounting();
-
-
-            }
-        });
-
-        main_BTN_drawCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             count++;
-             drawCard();
-             Log.d("myTag", "count"+count );
-
-                if (p1_card_value > p2_card_value){
-                    player1_count++;}
-                if (p2_card_value > p1_card_value) {
-                    player2_count++;
-                }
-                main_IMG_unfolded1.postDelayed(new Runnable() {
-                    public void run() {
-                        main_IMG_unfolded1.setImageResource(R.drawable.img_unfolded);
-                    }
-                }, 3000);
-
-                main_IMG_unfolded2.postDelayed(new Runnable() {
-                    public void run() {
-                        main_IMG_unfolded2.setImageResource(R.drawable.img_unfolded);
-                    }
-                }, 3000);
-
-                player1_counter.setText(""+player1_count);
-                player2_counter.setText(""+player2_count);
-
-
-
-
-                if (count>=26){
-                    if (player1_count>player2_count){
-                        winner= "winner 1";
-                        winner(winner,player1_count);
-                        finish();
-                    }
-                    if (player2_count>player1_count) {
-                        winner= "winner 2";
-                        winner(winner,player2_count);
-                        finish();
-
-                    }
-                    else
-                    drawCard();
-                }
-            }
-        });
     }
 
     private void drawCard() {
@@ -153,8 +104,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void startGame() {
-     main_BTN_start.setVisibility(View.INVISIBLE);
-       /// main_BTN_drawCard.setVisibility(View.VISIBLE);
 
         {
             count++;
@@ -170,13 +119,13 @@ public class GameActivity extends AppCompatActivity {
                 public void run() {
                     main_IMG_unfolded1.setImageResource(R.drawable.img_unfolded);
                 }
-            }, 1500);
+            }, UNFOLDELAY);
 
             main_IMG_unfolded2.postDelayed(new Runnable() {
                 public void run() {
                     main_IMG_unfolded2.setImageResource(R.drawable.img_unfolded);
                 }
-            }, 1500);
+            }, UNFOLDELAY);
 
             player1_counter.setText(""+player1_count);
             player2_counter.setText(""+player2_count);
@@ -210,7 +159,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void run()
             {
-                main_progressBar.setProgress(count*PROGMULT);
+                main_progressBar.setProgress(count* MULTIPLIER);
                 if(count==26)
                     t.cancel();
             }
@@ -236,10 +185,14 @@ public class GameActivity extends AppCompatActivity {
                 });
             }
         }, 0, DELAY);
+
+        game_BTN_start.setEnabled(true);
     }
 
     private void stopCounting() {
+        if(carousalTimer!=null){
         carousalTimer.cancel();
+        }
     }
 
 
@@ -251,8 +204,13 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        main_BTN_start.setVisibility(View.INVISIBLE);
     }
 }
