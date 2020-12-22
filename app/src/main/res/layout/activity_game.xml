@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.GameActivity"
+    android:orientation="horizontal"
+    android:background="#00695C"
+    tools:ignore="ExtraText">
+    <Button
+        android:id="@+id/game_BTN_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Game"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"/>
+    <ProgressBar
+        android:id="@+id/Game_progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/game_BTN_start"
+        android:layout_centerHorizontal="true"
+        />
+
+
+
+
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_toLeftOf="@id/game_BTN_start"
+        android:layout_marginRight="20dp">
+        <ImageView
+            android:id="@+id/main_IMG_woman"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/woman"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageView
+            android:id="@+id/main_IMG_unfolded1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/img_unfolded" />
+
+        <TextView
+            android:id="@+id/player1_counter"
+            android:textSize="40sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_toRightOf="@id/game_BTN_start"
+        android:layout_marginLeft="20dp">
+        <ImageView
+            android:id="@+id/main_IMG_man"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:src="@drawable/man"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageView
+
+            android:id="@+id/main_IMG_unfolded2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/img_unfolded" />
+
+        <TextView
+            android:id="@+id/player2_counter"
+            android:textSize="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/black"
+            />
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
