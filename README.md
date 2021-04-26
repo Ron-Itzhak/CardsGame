@@ -1,6 +1,5 @@
 # CardsGame
-Final Project
-android studio
+Android Project
 # 📸CardsGame Android Project 
 
 <!---
