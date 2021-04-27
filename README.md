@@ -21,5 +21,6 @@ a simple android war CardsGame
 
 ![game screen](https://user-images.githubusercontent.com/66008710/116222284-2209e800-a757-11eb-8e92-b66a9a9ff5ab.jpg)
 
+![High score screen](https://user-images.githubusercontent.com/66008710/116222681-7ad98080-a757-11eb-95b4-72ec81a08a46.jpg)
 
 
